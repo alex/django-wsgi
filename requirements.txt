@@ -1,0 +1,2 @@
+-e git+git://github.com/benoitc/gunicorn.git#egg=gunicorn
+Django
