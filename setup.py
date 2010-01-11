@@ -4,7 +4,7 @@ setup(
     name='django-wsgi',
     version='0.1alpha1',
     description="A library for better integration between django and the WSGI world.",
-    long_description=read('README.rst'),
+    long_description=open('README.txt').read(),
     author='Alex Gaynor',
     author_email='alex.gaynor@gmail.com',
     license='BSD',
