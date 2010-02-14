@@ -7,10 +7,10 @@ from django.core.urlresolvers import RegexURLResolver
 from django.http import Http404, HttpResponseNotFound, HttpResponse
 
 
-settings.configure()
-
 class wsgi_application(object):
     def __init__(self, function_or_urlconf):
+        if not settings.configured:
+            settings.configure()
         self.function_or_urlconf = function_or_urlconf
 
     def get_view(self, request):
