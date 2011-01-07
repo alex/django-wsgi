@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.handlers.wsgi import WSGIRequest, STATUS_CODE_TEXT
 from django.core.urlresolvers import RegexURLResolver
 from django.http import Http404, HttpResponseNotFound, HttpResponse
+from django.utils.html import escape
 
 
 class wsgi_application(object):
@@ -29,7 +30,7 @@ class wsgi_application(object):
             view, args, kwargs = self.get_view(request)
             response = view(request, *args, **kwargs)
         except Http404:
-            response = HttpResponseNotFound("Couldn't find %s" % request.path_info)
+            response = HttpResponseNotFound("Couldn't find %s" % escape(request.path_info))
         except Exception, e:
             response = HttpResponse(format_exc(e), status=500, mimetype="text/plain")
         status_text = STATUS_CODE_TEXT.get(response.status_code, "UNKOWN STATUS CODE")
